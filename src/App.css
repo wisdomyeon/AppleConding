@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.black-nav {
+  display: flex;
+  background: black;
+  width: 100%;
+  color: white;
+  padding-left: 20px;
+}
+
+div {
+  box-sizing: border-box;
+}
+.list {
+  padding-left: 20px;
+  padding-top: 20px;
+  text-align: left;
+  border-bottom: 1px solid gray;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background: #eee;
+  text-align: left;
+}
+
+.StudentList {
+  background: #eee;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid black;
+  transition: 1s;
+}
+
+.StudentList:hover {
+  background-color: gold;
+  transition: 1s;
+  color: white;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
