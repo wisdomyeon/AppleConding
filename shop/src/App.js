@@ -14,7 +14,6 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-      <div>git test commit2</div>
       <div className='main-bg'></div>
       <div className='container'>
         <div className='row'>
