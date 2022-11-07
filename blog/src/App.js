@@ -3,6 +3,7 @@ import './App.css';
 import { useState, useSyncExternalStore } from "react";
 
 function App() {
+  let t ='git test';
   let test ="깃 테스트";
   let post = "재림이 바보";
   let d = 'pull X';
