@@ -3,7 +3,14 @@ import './App.css';
 import {Button, Navbar, Container, Nav} from 'react-bootstrap';
 import data from './component/data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"
-import Detail from './page/Detail';
+import Detail from './page/Detail.jsx';
+import styled from 'styled-components'
+
+let Btn = styled.button`
+  color : pink;
+  background : white;
+  border : 1px solid black;
+`
 
 function App() {
   let [shoesdata, setShoesData] = useState(data)
@@ -22,7 +29,7 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
+      
       <Routes>
         <Route path='/' element={ 
            <>
@@ -31,18 +38,31 @@ function App() {
              <div className='row'>
                {
                  shoesdata.map((shoes)=>{ 
-                   return <ShoesData shoesdata = {shoes} key={shoes.id}></ShoesData>
+                   return <ShoesData shoesdata={shoes} key={shoes.id}></ShoesData>
                  })
                }
              </div>
+             <Button variant="primary">Primary</Button>
+             <Button variant="light" onClick={() => {
+                let temp = [...shoesdata];
+                temp.sort((a, b) => {
+                if (a.title < b.title) {
+                  return -1;
+                }
+                else if (a.title > b.title) {
+                  return 1;
+                }
+                });
+                setShoesData(temp);
+              }}>가나다순 정렬</Button>
+             <Btn>버튼</Btn>
            </div>
            </>
          } />
          
-        <Route path='/detail/:id' element={<Detail shoes={ shoesdata } />}/>
-        <Route path='/detail/:id' element={<Detail shoes={ shoesdata } />}/>
-        <Route path='/detail/:id' element={<Detail shoes={ shoesdata } />} />
-        
+        <Route path='/detail/:id' element={<Detail shoesdata={shoesdata}/>}/>
+        <Route path='*' element={<div>404 페이지</div>}/>
+    
         <Route path='/about' element={<About/>}>
           <Route path='member' element={<div>멤버 정보</div>}/>
           <Route path='location' element={<div>장소 정보</div>}/>
@@ -54,19 +74,7 @@ function App() {
         </Route>
       </Routes> 
 
-      <Button variant="primary">Primary</Button>
-      <Button variant="light" onClick={() => {
-        let temp = [...shoesdata];
-        temp.sort((a, b) => {
-          if (a.title < b.title) {
-            return -1;
-          }
-          else if (a.title > b.title) {
-            return 1;
-          }
-        });
-        setShoesData(temp);
-      }}>가나다순 정렬</Button>
+      
     </div>
   );
 }
