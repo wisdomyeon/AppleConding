@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 const Detail = (props) => {
   let { id } = useParams();
   let [event, setEvent] = useState(true);
+  let [input, setInput] = useState('');
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,6 +14,14 @@ const Detail = (props) => {
       console.log("디테일 컴포넌트 삭제");
     };
   });
+
+  useEffect(()=>{
+   if(isNaN(input)===true){
+    setTimeout(()=>{
+    alert(`문자를 입력하셨어요.${input}`);
+   },3000);
+   };
+  },[input]);
 
   return (
     <div className="container">
@@ -29,6 +38,12 @@ const Detail = (props) => {
           />
         </div>
         <div className="col-md-6">
+
+          <input onChange={(e)=>{
+            setInput(e.target.value);
+          }}/>
+          <button onClick={()=>{}}>전송</button>
+
           <h4 className="pt-5">{props.shoesdata[id].title}</h4>
           <p>{props.shoesdata[id].content}</p>
           <p>{props.shoesdata[id].price}</p>
