@@ -5,6 +5,7 @@ import data from "./component/data.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./page/Detail.jsx";
 import styled from "styled-components";
+import axios from 'axios';
 
 let Btn = styled.button`
   color: pink;
@@ -62,7 +63,11 @@ function App() {
                 >
                   가나다순 정렬
                 </Button>
-                <Btn>버튼</Btn>
+                <Btn onClick={() => {
+                  axios.get('https://codingapple1.github.io/shop/data2.json').then((result) => { console.log(result.data) }).catch(() => {
+                    console.log('실패함')
+                  })
+                }}>버튼</Btn>
               </div>
             </>
           }

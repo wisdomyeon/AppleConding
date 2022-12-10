@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Detail = (props) => {
   let { id } = useParams();
   let [event, setEvent] = useState(true);
   let [input, setInput] = useState('');
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,13 +16,13 @@ const Detail = (props) => {
     };
   });
 
-  useEffect(()=>{
-   if(isNaN(input)===true){
-    setTimeout(()=>{
-    alert(`문자를 입력하셨어요.${input}`);
-   },3000);
-   };
-  },[input]);
+  useEffect(() => {
+    if (isNaN(input) === true) {
+      setTimeout(() => {
+        alert(`문자를 입력하셨어요.`);
+      }, 3000);
+    };
+  }, [input]);
 
   return (
     <div className="container">
@@ -39,10 +40,10 @@ const Detail = (props) => {
         </div>
         <div className="col-md-6">
 
-          <input onChange={(e)=>{
+          <input onChange={(e) => {
             setInput(e.target.value);
-          }}/>
-          <button onClick={()=>{}}>전송</button>
+          }} />
+          <button onClick={() => { }}>전송</button>
 
           <h4 className="pt-5">{props.shoesdata[id].title}</h4>
           <p>{props.shoesdata[id].content}</p>
