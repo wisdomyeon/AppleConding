@@ -15,6 +15,8 @@ let Btn = styled.button`
 
 function App() {
   let [shoesdata, setShoesData] = useState(data);
+  let [count, setCount] = useState(0);
+  let [itemEmpty, setItemEmpty] = useState("");
   let navigate = useNavigate();
 
   return (
@@ -64,10 +66,31 @@ function App() {
                   가나다순 정렬
                 </Button>
                 <Btn onClick={() => {
-                  axios.get('https://codingapple1.github.io/shop/data2.json').then((result) => { console.log(result.data) }).catch(() => {
-                    console.log('실패함')
-                  })
-                }}>버튼</Btn>
+                  axios.all([
+                    axios.get('https://codingapple1.github.io/shop/data2.json'),
+                    axios.get('https://codingapple1.github.io/shop/data3.json')
+                  ])
+                    .then((result) => {
+                      for (let i in result) {
+                        console.log(result[i].data)
+                        let copy = [...data, ...result[i].data]
+                        setShoesData(copy);
+                        setCount(count + 1);
+                      }
+                    })
+                    .catch(() => {
+                      console.log('실패함')
+                    })
+                  // axios.get('https://codingapple1.github.io/shop/data3.json')
+                  //   .then((result2) => {
+                  //     let copy = [...data, ...result2.data]
+                  //     setShoesData(copy)
+                  //   })
+                  if (count >= 3) {
+                    setItemEmpty("상품이 없습니다.");
+                    alert(itemEmpty);
+                  }
+                }}>더보기{count}</Btn>
               </div>
             </>
           }

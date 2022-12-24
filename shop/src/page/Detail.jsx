@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
 
 const Detail = (props) => {
   let { id } = useParams();
   let [event, setEvent] = useState(true);
   let [input, setInput] = useState('');
+  let [content, setContent] = useState(0);
 
 
   useEffect(() => {
@@ -51,8 +53,41 @@ const Detail = (props) => {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+      <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => {
+            setContent(0)
+          }
+          }>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={() => {
+            setContent(1)
+          }}>후기</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-3" onClick={() => {
+            setContent(2)
+          }}>
+            Q&A
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent content={content}></TabContent>
     </div>
   );
 };
+
+function TabContent(props) {
+  if (props.content === 0) {
+    return <div>내용0</div>
+  }
+  if (props.content === 1) {
+    return <div>내용1</div>
+  }
+  if (props.content === 2) {
+    return <div>내용2</div>
+  }
+}
 
 export default Detail;
