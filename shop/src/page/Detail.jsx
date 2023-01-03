@@ -78,16 +78,20 @@ const Detail = (props) => {
   );
 };
 
-function TabContent(props) {
-  if (props.content === 0) {
-    return <div>내용0</div>
-  }
-  if (props.content === 1) {
-    return <div>내용1</div>
-  }
-  if (props.content === 2) {
-    return <div>내용2</div>
-  }
+function TabContent({ content }) {
+  let [fade, setFade] = useState('');
+
+  //end css를 뗐다가 다시 붙히는 작업
+  useEffect(() => {
+    setTimeout(() => { setFade('end') }, 100)
+    return () => {
+      setFade('')
+    }
+  }, [content])
+
+  return (<div className={'star ' + fade}>
+    {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][content]}
+  </div>)
 }
 
 export default Detail;

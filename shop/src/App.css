@@ -1,4 +1,13 @@
-.main-bg{
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.main-bg {
   height: 600px;
   background-image: url('./main-bg.jpg');
   background-position: center;
@@ -39,6 +48,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
