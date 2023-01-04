@@ -7,8 +7,9 @@ const Detail = (props) => {
   let [event, setEvent] = useState(true);
   let [input, setInput] = useState('');
   let [content, setContent] = useState(0);
+  let [deatilPage, setDetailPage] = useState('');
 
-
+  //할인문구 이벤트 effect
   useEffect(() => {
     setTimeout(() => {
       setEvent(false);
@@ -17,7 +18,7 @@ const Detail = (props) => {
       console.log("디테일 컴포넌트 삭제");
     };
   });
-
+  //수량 입력 input
   useEffect(() => {
     if (isNaN(input) === true) {
       setTimeout(() => {
@@ -25,12 +26,23 @@ const Detail = (props) => {
       }, 3000);
     };
   }, [input]);
+  //detail 페이지 전환애니메이션
+  useEffect(() => {
+    setTimeout(() => {
+      setDetailPage('detailEnd')
+    })
+    return () => {
+      setDetailPage('');
+    }
+  }, [id])
 
   return (
-    <div className="container">
-      {event ? (
-        <div className="alert alert-warning"> 2초이내 구매시 할인</div>
-      ) : null}
+    <div className={`container detailStart ${deatilPage}`}>
+      {
+        event ? (
+          <div className="alert alert-warning" > 2초이내 구매시 할인</div>
+        ) : null
+      }
       <div className="row">
         <div className="col-md-6">
           <img
@@ -74,7 +86,7 @@ const Detail = (props) => {
         </Nav.Item>
       </Nav>
       <TabContent content={content}></TabContent>
-    </div>
+    </div >
   );
 };
 
@@ -89,7 +101,7 @@ function TabContent({ content }) {
     }
   }, [content])
 
-  return (<div className={'star ' + fade}>
+  return (<div className={'start ' + fade}>
     {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][content]}
   </div>)
 }

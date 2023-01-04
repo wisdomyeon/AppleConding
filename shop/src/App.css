@@ -4,7 +4,16 @@
 
 .end {
   opacity: 1;
-  transition: opacity 0.5s;
+  transition: all 0.5s;
+}
+
+.detailStart {
+  opacity: 0;
+}
+
+.detailEnd {
+  opacity: 1;
+  transition: all 1s;
 }
 
 .main-bg {
