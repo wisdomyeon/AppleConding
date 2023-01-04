@@ -90,6 +90,7 @@ const Detail = (props) => {
   );
 };
 
+//상세내용 전환애니메이션
 function TabContent({ content }) {
   let [fade, setFade] = useState('');
 

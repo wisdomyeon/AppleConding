@@ -6,6 +6,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./page/Detail.jsx";
 import styled from "styled-components";
 import axios from 'axios';
+import Cart from './component/Cart.js';
 
 let Btn = styled.button`
   color: pink;
@@ -98,6 +99,7 @@ function App() {
 
         <Route path="/detail/:id" element={<Detail shoesdata={shoesdata} />} />
         <Route path="*" element={<div>404 페이지</div>} />
+        <Route path="/cart" element={<Cart />}></Route>
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버 정보</div>} />
