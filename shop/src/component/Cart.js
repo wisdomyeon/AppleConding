@@ -1,5 +1,9 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 function Cart() {
+
+    let allState = useSelector((state) => { return state })
+    console.log(allState);
 
     return (
         <Table striped>
