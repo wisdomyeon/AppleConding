@@ -18,7 +18,7 @@ let items = createSlice({
   ],
   reducers: {
     plusCount(state) {
-      return state.count + 1;
+      return state.count += 1;
     }
   }
 })

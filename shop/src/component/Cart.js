@@ -1,15 +1,16 @@
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { plusCount } from "./../store";
-function Cart() {
 
+function Cart() {
     let allState = useSelector((state) => { return state })
-    console.log(allState.user);
-    console.log(allState.inventory);
-    console.log(allState.items[0]);
+    let dispatch = useDispatch()
+
+    //console.log(allState.user);
+    //console.log(allState.inventory);
+    //console.log(allState.items[0]);
     //또는 let user = useSelector((state)=>{ return state.user}) 식으로 사용가능
     // console.log(user);
-    let dispatch = useDispatch()
 
     return (
         <Table striped>
