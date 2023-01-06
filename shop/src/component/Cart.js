@@ -1,5 +1,6 @@
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { plusCount } from "./../store";
 function Cart() {
 
     let allState = useSelector((state) => { return state })
@@ -8,6 +9,7 @@ function Cart() {
     console.log(allState.items[0]);
     //또는 let user = useSelector((state)=>{ return state.user}) 식으로 사용가능
     // console.log(user);
+    let dispatch = useDispatch()
 
     return (
         <Table striped>
@@ -20,26 +22,20 @@ function Cart() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{allState.items[0].id + 1}</td>
-                    <td>{allState.items[0].name}</td>
-                    <td>{allState.items[0].count}</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>{allState.items[1].id + 1}</td>
-                    <td>{allState.items[1].name}</td>
-                    <td>{allState.items[1].count}</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </Table>
+                {
+                    allState.items.map((cur, index) =>
+                        <tr>
+                            <td>{allState.items[index].id + 1}</td>
+                            <td>{allState.items[index].name}</td>
+                            <td>{allState.items[index].count}</td>
+                            <td><button onClick={() => {
+                                dispatch(plusCount())
+                            }}>+</button></td>
+                        </tr>
+                    )
+                }
+            </tbody >
+        </Table >
     )
 }
 export default Cart;
