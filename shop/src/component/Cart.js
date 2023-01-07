@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { plusCount } from "./../store";
 
 function Cart() {
-    let allState = useSelector((state) => { return state })
+    let state = useSelector((state) => { return state })
     let dispatch = useDispatch()
 
     //console.log(allState.user);
@@ -24,11 +24,11 @@ function Cart() {
             </thead>
             <tbody>
                 {
-                    allState.items.map((cur, index) =>
+                    state.items.map((cur, index) =>
                         <tr>
-                            <td>{allState.items[index].id + 1}</td>
-                            <td>{allState.items[index].name}</td>
-                            <td>{allState.items[index].count}</td>
+                            <td>{state.items[index].id + 1}</td>
+                            <td>{state.items[index].name}</td>
+                            <td>{state.items[index].count}</td>
                             <td><button onClick={() => {
                                 dispatch(plusCount())
                             }}>+</button></td>
