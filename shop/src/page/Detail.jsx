@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
+import { useDispatch } from "react-redux";
+import { addItem } from "./../store";
 
 const Detail = (props) => {
   let { id } = useParams();
@@ -8,6 +10,7 @@ const Detail = (props) => {
   let [input, setInput] = useState('');
   let [content, setContent] = useState(0);
   let [deatilPage, setDetailPage] = useState('');
+  let dispatch = useDispatch();
 
   //할인문구 이벤트 effect
   useEffect(() => {
@@ -62,7 +65,9 @@ const Detail = (props) => {
           <h4 className="pt-5">{props.shoesdata[id].title}</h4>
           <p>{props.shoesdata[id].content}</p>
           <p>{props.shoesdata[id].price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={() => {
+            dispatch(addItem({ id: props.shoesdata.id, name: props.shoesdata[id].title, count: 1 }))
+          }}>주문하기</button>
         </div>
       </div>
       <Nav variant="tabs" defaultActiveKey="/home">

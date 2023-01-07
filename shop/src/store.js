@@ -3,11 +3,6 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 let user = createSlice({
   name: "user",
   initialState: "choi",
-  reducers: {
-    aa(state) {
-      console.log(state);
-    },
-  },
 });
 
 let inventory = createSlice({
@@ -24,12 +19,15 @@ let items = createSlice({
   reducers: {
     plusCount(state, action) {
       // console.log(action.payload.action);
-      let item = state.find((v) => v.id === action.payload.action);
+      let item = state.find((v) => v.id === action.payload);
       item.count += 1;
     },
+    addItem(state, action) {
+      state.push(action.payload)
+    }
   },
 });
-export let { plusCount, aa } = items.actions;
+export let { plusCount, addItem } = items.actions;
 
 export default configureStore({
   reducer: {

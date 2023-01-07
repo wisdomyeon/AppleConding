@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { plusCount, aa } from "./../store";
+import { plusCount } from "./../store";
 
 function Cart() {
-    let allState = useSelector((state) => {
+    let state = useSelector((state) => {
         return state;
     });
     let dispatch = useDispatch();
@@ -25,15 +25,15 @@ function Cart() {
                 </tr>
             </thead>
             <tbody>
-                {allState.items.map((cur, index) => (
+                {state.items.map((cur, index) => (
                     <tr>
-                        <td>{allState.items[index].id + 1}</td>
-                        <td>{allState.items[index].name}</td>
-                        <td>{allState.items[index].count}</td>
+                        <td>{state.items[index].id}</td>
+                        <td>{state.items[index].name}</td>
+                        <td>{state.items[index].count}</td>
                         <td>
                             <button
                                 onClick={() => {
-                                    dispatch(plusCount({ action: cur.id }));
+                                    dispatch(plusCount(state.items[index].id));
                                 }}
                             >
                                 +
