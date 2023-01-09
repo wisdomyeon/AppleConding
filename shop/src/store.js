@@ -22,7 +22,9 @@ let items = createSlice({
       let item = state.find((v) => v.id === action.payload);
       item.count += 1;
     },
+    //아이템 주문하기 버튼 누르면 새로운 상품 장바구니에 추가
     addItem(state, action) {
+      console.log(action.payload)
       state.push(action.payload)
     }
   },
