@@ -122,7 +122,7 @@ function ShoesData(props) {
       <img
         src={process.env.PUBLIC_URL + `/shoes${props.shoesdata.id + 1}.jpg`}
         width="80%"
-      ></img>
+      ><Link to="/deatail/:id"></Link></img>
       <h4>{props.shoesdata.title}</h4>
       <p>{props.shoesdata.price}</p>
     </div>
