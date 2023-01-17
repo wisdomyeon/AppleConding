@@ -18,12 +18,14 @@ function App() {
   let [shoesdata, setShoesData] = useState(data);
   let [count, setCount] = useState(0);
   let [itemEmpty, setItemEmpty] = useState("");
-  let [itemNum, setItemNum] = useState(0);
   let navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem('watched', JSON.stringify(itemNum))
-  }, [itemNum])
+    if (localStorage.getItem('watched') == true) {
+      console.log('dnd')
+    }
+  })
+
 
   return (
     <div className="App">
@@ -50,7 +52,7 @@ function App() {
                 <div className="row">
                   {shoesdata.map((shoes) => {
                     return (
-                      <ShoesData shoesdata={shoes} key={shoes.id} itemNum={itemNum} setItemNum={setItemNum}
+                      <ShoesData shoesdata={shoes} key={shoes.id} nav={navigate}
                       ></ShoesData>
                     );
                   })}
@@ -128,10 +130,7 @@ function ShoesData(props) {
       <img
         src={process.env.PUBLIC_URL + `/shoes${props.shoesdata.id + 1}.jpg`}
         width="80%"
-        onClick={() => {
-          props.setItemNum(`${props.shoesdata.id}`)
-          console.log(`${props.itemNum}`)
-        }}
+        onClick={() => props.nav(<Detail />)}
       ></img>
       <h4>{props.shoesdata.title}</h4>
       <p>{props.shoesdata.price}</p>

@@ -12,6 +12,17 @@ const Detail = (props) => {
   let [content, setContent] = useState(0);
   let [deatilPage, setDetailPage] = useState('');
   let dispatch = useDispatch();
+  let item = props.shoes.find(x => x.id == id)
+
+  //localStatus id 저장
+  useEffect(() => {
+    let pullItem = localStorage.getItem('watched')
+    pullItem = JSON.parse(pullItem)
+    pullItem.push(item.id)
+    pullItem = new Set(pullItem)
+    pullItem = Array.from(pullItem)
+    localStorage.setItem('watched', JSON.stringify(pullItem))
+  },)
 
   //할인문구 이벤트 effect
   useEffect(() => {
@@ -72,7 +83,6 @@ const Detail = (props) => {
                 dispatch(addItem({ id: props.shoesdata.id, name: props.shoesdata[id].title, count: 1 }))
               }}>주문하기</button>
             } />
-
           </div>
         </div>
         <Nav variant="tabs" defaultActiveKey="/home">
