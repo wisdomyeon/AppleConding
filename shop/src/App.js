@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import data from "./component/data.js";
@@ -18,7 +18,12 @@ function App() {
   let [shoesdata, setShoesData] = useState(data);
   let [count, setCount] = useState(0);
   let [itemEmpty, setItemEmpty] = useState("");
+  let [itemNum, setItemNum] = useState(0);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('watched', JSON.stringify(itemNum))
+  }, [itemNum])
 
   return (
     <div className="App">
@@ -45,7 +50,8 @@ function App() {
                 <div className="row">
                   {shoesdata.map((shoes) => {
                     return (
-                      <ShoesData shoesdata={shoes} key={shoes.id}></ShoesData>
+                      <ShoesData shoesdata={shoes} key={shoes.id} itemNum={itemNum} setItemNum={setItemNum}
+                      ></ShoesData>
                     );
                   })}
                 </div>
@@ -111,7 +117,7 @@ function App() {
           <Route path="two" element={<div> 생일기념 쿠폰받기 </div>} />
         </Route>
       </Routes>
-    </div>
+    </div >
   );
 }
 export default App;
@@ -122,7 +128,11 @@ function ShoesData(props) {
       <img
         src={process.env.PUBLIC_URL + `/shoes${props.shoesdata.id + 1}.jpg`}
         width="80%"
-      ><Link to="/deatail/:id"></Link></img>
+        onClick={() => {
+          props.setItemNum(`${props.shoesdata.id}`)
+          console.log(`${props.itemNum}`)
+        }}
+      ></img>
       <h4>{props.shoesdata.title}</h4>
       <p>{props.shoesdata.price}</p>
     </div>
