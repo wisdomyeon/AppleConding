@@ -52,8 +52,10 @@ function App() {
                 <div className="row">
                   {shoesdata.map((shoes) => {
                     return (
-                      <ShoesData shoesdata={shoes} key={shoes.id} nav={navigate}
-                      ></ShoesData>
+                      <Link to="/detail/0">
+                        <ShoesData shoesdata={shoes} key={shoes.id}
+                        ></ShoesData>
+                      </Link>
                     );
                   })}
                 </div>
@@ -130,7 +132,9 @@ function ShoesData(props) {
       <img
         src={process.env.PUBLIC_URL + `/shoes${props.shoesdata.id + 1}.jpg`}
         width="80%"
-        onClick={() => props.nav(<Detail />)}
+        onClick={(e) => {
+          console.log(e)
+        }}
       ></img>
       <h4>{props.shoesdata.title}</h4>
       <p>{props.shoesdata.price}</p>
