@@ -52,62 +52,61 @@ const Detail = (props) => {
   }, [id])
 
   return (
-    <Routes>
-      <div className={`container detailStart ${deatilPage}`}>
-        {
-          event ? (
-            <div className="alert alert-warning" > 2초이내 구매시 할인</div>
-          ) : null
-        }
-        <div className="row">
-          <div className="col-md-6">
-            <img
-              src={
-                process.env.PUBLIC_URL + `/shoes${props.shoesdata[id].id + 1}.jpg`
-              }
-              width="100%"
-            />
-          </div>
-          <div className="col-md-6">
-
-            <input onChange={(e) => {
-              setInput(e.target.value);
-            }} />
-            <button onClick={() => { }}>전송</button>
-
-            <h4 className="pt-5">{props.shoesdata[id].title}</h4>
-            <p>{props.shoesdata[id].content}</p>
-            <p>{props.shoesdata[id].price}</p>
-            <Route path="/cart" component={
-              <button className="btn btn-danger" onClick={() => {
-                dispatch(addItem({ id: props.shoesdata.id, name: props.shoesdata[id].title, count: 1 }))
-              }}>주문하기</button>
-            } />
-          </div>
-        </div>
-        <Nav variant="tabs" defaultActiveKey="/home">
-          <Nav.Item>
-            <Nav.Link eventKey="link-1" onClick={() => {
-              setContent(0)
+    <div className={`container detailStart ${deatilPage}`}>
+      {
+        event ? (
+          <div className="alert alert-warning" > 2초이내 구매시 할인</div>
+        ) : null
+      }
+      <div className="row">
+        <div className="col-md-6">
+          <img
+            src={
+              process.env.PUBLIC_URL + `/shoes${props.shoesdata[id].id + 1}.jpg`
             }
-            }>상세정보</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2" onClick={() => {
-              setContent(1)
-            }}>후기</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-3" onClick={() => {
-              setContent(2)
-            }}>
-              Q&A
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-        <TabContent content={content}></TabContent>
-      </div >
-    </Routes>
+            width="100%"
+          />
+        </div>
+        <div className="col-md-6">
+
+          <input onChange={(e) => {
+            setInput(e.target.value);
+          }} />
+          <button onClick={() => { }}>전송</button>
+
+          <h4 className="pt-5">{props.shoesdata[id].title}</h4>
+          <p>{props.shoesdata[id].content}</p>
+          <p>{props.shoesdata[id].price}</p>
+
+          <button className="btn btn-danger" onClick={() => {
+            dispatch(addItem({ id: props.shoesdata.id, name: props.shoesdata[id].title, count: 1 }))
+          }}>주문하기</button>
+
+        </div>
+      </div>
+      <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => {
+            setContent(0)
+          }
+          }>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={() => {
+            setContent(1)
+          }}>후기</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-3" onClick={() => {
+            setContent(2)
+          }}>
+            Q&A
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent content={content}></TabContent>
+    </div >
+
   );
 };
 
